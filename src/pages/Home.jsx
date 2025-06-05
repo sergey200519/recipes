@@ -21,10 +21,6 @@ export default function Home() {
     );
   }, [catalog, searchTerm]);
 
-  if (loading) {
-    return <Preloader />;
-  }
-
   return (
     <>
       <input
@@ -34,7 +30,8 @@ export default function Home() {
         onChange={(e) => setSearchTerm(e.target.value)}
         className="border border-black rounded-md p-2 mb-[20px] w-full"
       />
-      <CategoryList catalog={filteredCatalog} />
+      {loading ? <Preloader /> : <CategoryList catalog={filteredCatalog} />}
     </>
   );
 }
+

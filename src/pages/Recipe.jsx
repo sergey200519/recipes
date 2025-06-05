@@ -1,6 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getMealById } from "../lib/api";
+import { Preloader } from "../components/ui/Preloader";
 
 export default function Recipe() {
   const { id } = useParams();
@@ -24,11 +25,7 @@ export default function Recipe() {
   }, [id]);
 
   if (loading) {
-    return (
-      <div className="p-8 text-center text-gray-500">
-        Загрузка рецепта...
-      </div>
-    );
+    return <Preloader />;
   }
 
   if (!meal) {
